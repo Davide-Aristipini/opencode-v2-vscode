@@ -2,7 +2,7 @@
   "name": "opencode-v2-community-terminal",
   "displayName": "OpenCode V2 Community Terminal",
   "description": "Use the OpenCode V2 terminal interface directly inside Visual Studio Code.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "OpenCodeV2Community",
   "icon": "images/icon.png",
   "pricing": "Free",
@@ -51,7 +51,10 @@
         "command": "opencodeV2.openNew",
         "title": "Open New Session",
         "category": "OpenCode V2",
-        "icon": "$(add)"
+        "icon": {
+          "light": "images/button-dark.svg",
+          "dark": "images/button-light.svg"
+        }
       },
       {
         "command": "opencodeV2.addContext",
@@ -66,6 +69,12 @@
     ],
     "menus": {
       "editor/title": [
+        {
+          "command": "opencodeV2.openNew",
+          "group": "navigation@99"
+        }
+      ],
+      "terminal/title": [
         {
           "command": "opencodeV2.openNew",
           "group": "navigation@99"
