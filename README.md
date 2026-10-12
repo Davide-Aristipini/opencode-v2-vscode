@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="images/icon.png" width="128" alt="OpenCode V2 for VS Code logo">
+  <img src="images/icon.png" width="128" alt="OpenCode V2 Community Terminal logo">
 </p>
 
-# OpenCode V2 for VS Code
+# OpenCode V2 Community Terminal
 
 An unofficial, community-maintained Visual Studio Code integration for the OpenCode V2 terminal interface.
 

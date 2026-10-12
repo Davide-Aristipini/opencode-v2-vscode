@@ -1,6 +1,6 @@
 {
-  "name": "opencode-v2-vscode",
-  "displayName": "OpenCode V2 for VS Code",
+  "name": "opencode-v2-community-terminal",
+  "displayName": "OpenCode V2 Community Terminal",
   "description": "Use the OpenCode V2 terminal interface directly inside Visual Studio Code.",
   "version": "0.1.0",
   "publisher": "OpenCodeV2Community",
