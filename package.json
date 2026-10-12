@@ -3,7 +3,7 @@
   "displayName": "OpenCode V2 for VS Code",
   "description": "Use the OpenCode V2 terminal interface directly inside Visual Studio Code.",
   "version": "0.1.0",
-  "publisher": "opencode-v2-community",
+  "publisher": "OpenCodeV2Community",
   "icon": "images/icon.png",
   "pricing": "Free",
   "galleryBanner": {
