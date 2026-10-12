@@ -90,7 +90,48 @@ async function openOrFocus(forceNew: boolean): Promise<void> {
   const command = reference
     ? `${executableCommand} --prompt ${quoteShellArgument(`In ${reference}`, shell)}`
     : executableCommand
-  terminal.sendText(command, true)
+  executeWhenTerminalReady(terminal, command)
+}
+
+function executeWhenTerminalReady(terminal: vscode.Terminal, command: string): void {
+  if (terminal.shellIntegration) {
+    terminal.shellIntegration.executeCommand(command)
+    return
+  }
+
+  let executed = false
+  let fallback: NodeJS.Timeout | undefined
+
+  const shellListener = vscode.window.onDidChangeTerminalShellIntegration((event) => {
+    if (event.terminal !== terminal || executed) return
+
+    executed = true
+    if (fallback) clearTimeout(fallback)
+    closeListener.dispose()
+    shellListener.dispose()
+    event.shellIntegration.executeCommand(command)
+  })
+
+  const closeListener = vscode.window.onDidCloseTerminal((closedTerminal) => {
+    if (closedTerminal !== terminal || executed) return
+
+    executed = true
+    if (fallback) clearTimeout(fallback)
+    closeListener.dispose()
+    shellListener.dispose()
+  })
+
+  // Some shells (notably Command Prompt) do not support shell integration.
+  // Waiting follows VS Code's recommended pattern and prevents startup input
+  // from being lost before the terminal's PTY is ready.
+  fallback = setTimeout(() => {
+    if (executed) return
+
+    executed = true
+    closeListener.dispose()
+    shellListener.dispose()
+    terminal.sendText(command, true)
+  }, 3_000)
 }
 
 async function addContext(): Promise<void> {

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2
+
+- Fixed OpenCode sometimes not starting when its button created a new terminal.
+- Wait for VS Code shell integration before executing the OpenCode command.
+
 ## 0.1.1
 
 - Added a recognizable OpenCode V2 button to editor title bars.
