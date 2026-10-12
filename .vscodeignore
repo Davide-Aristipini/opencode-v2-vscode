@@ -1,0 +1,10 @@
+.github/**
+.vscode/**
+src/**
+test/**
+node_modules/**
+scripts/**
+.gitignore
+esbuild.mjs
+tsconfig.json
+*.vsix

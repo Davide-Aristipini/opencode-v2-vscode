@@ -1,0 +1,138 @@
+{
+  "name": "opencode-v2-vscode",
+  "displayName": "OpenCode V2 for VS Code",
+  "description": "Use the OpenCode V2 terminal interface directly inside Visual Studio Code.",
+  "version": "0.1.0",
+  "publisher": "opencode-v2-community",
+  "icon": "images/icon.png",
+  "pricing": "Free",
+  "galleryBanner": {
+    "color": "#131010",
+    "theme": "dark"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Davide-Aristipini/opencode-v2-vscode"
+  },
+  "homepage": "https://github.com/Davide-Aristipini/opencode-v2-vscode#readme",
+  "bugs": {
+    "url": "https://github.com/Davide-Aristipini/opencode-v2-vscode/issues"
+  },
+  "engines": {
+    "vscode": "^1.94.0"
+  },
+  "categories": [
+    "Other",
+    "Machine Learning"
+  ],
+  "keywords": [
+    "opencode",
+    "ai",
+    "assistant",
+    "terminal"
+  ],
+  "activationEvents": [
+    "onCommand:opencodeV2.open",
+    "onCommand:opencodeV2.openNew",
+    "onCommand:opencodeV2.addContext",
+    "onCommand:opencodeV2.checkInstallation"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "opencodeV2.open",
+        "title": "Open or Focus OpenCode",
+        "category": "OpenCode V2",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "opencodeV2.openNew",
+        "title": "Open New Session",
+        "category": "OpenCode V2",
+        "icon": "$(add)"
+      },
+      {
+        "command": "opencodeV2.addContext",
+        "title": "Add Current File or Selection",
+        "category": "OpenCode V2"
+      },
+      {
+        "command": "opencodeV2.checkInstallation",
+        "title": "Check Installation",
+        "category": "OpenCode V2"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "opencodeV2.openNew",
+          "group": "navigation@99"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "opencodeV2.addContext",
+          "group": "opencode@1",
+          "when": "editorTextFocus"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "opencodeV2.open",
+        "key": "ctrl+escape",
+        "mac": "cmd+escape"
+      },
+      {
+        "command": "opencodeV2.openNew",
+        "key": "ctrl+shift+escape",
+        "mac": "cmd+shift+escape"
+      },
+      {
+        "command": "opencodeV2.addContext",
+        "key": "ctrl+alt+k",
+        "mac": "cmd+alt+k",
+        "when": "editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "title": "OpenCode V2",
+      "properties": {
+        "opencodeV2.executablePath": {
+          "type": "string",
+          "default": "opencode",
+          "description": "Path or command used to start the OpenCode V2 CLI."
+        },
+        "opencodeV2.includeContextOnOpen": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include the active file or selection as the initial prompt when opening a session."
+        },
+        "opencodeV2.showStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the OpenCode launcher in the status bar."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "npm run typecheck && node esbuild.mjs --production",
+    "compile": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test test/**/*.test.ts",
+    "package": "npm run build && vsce package",
+    "vscode:prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.94.0",
+    "@vscode/vsce": "^3.6.0",
+    "esbuild": "^0.25.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.8.0"
+  }
+}
