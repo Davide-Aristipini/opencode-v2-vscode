@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.3
+
+- Fixed terminal launch when VS Code has no explicit default Windows terminal profile.
+
 ## 0.1.2
 
 - Fixed OpenCode sometimes not starting when its button created a new terminal.

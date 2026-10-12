@@ -199,10 +199,10 @@ function getActiveFileReference(): string | undefined {
 function detectShell(): ShellKind {
   if (process.platform !== "win32") return "posix"
 
-  const profile = vscode.workspace
+  const configuredProfile = vscode.workspace
     .getConfiguration("terminal.integrated")
-    .get<string>("defaultProfile.windows", "PowerShell")
-    .toLowerCase()
+    .get<string | null>("defaultProfile.windows")
+  const profile = (configuredProfile ?? "PowerShell").toLowerCase()
 
   return profile.includes("command prompt") || profile.includes("cmd") ? "cmd" : "powershell"
 }
